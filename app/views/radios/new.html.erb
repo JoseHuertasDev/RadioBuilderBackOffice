@@ -1,0 +1,72 @@
+<!-- app/views/radios/new.html.erb -->
+
+<%= turbo_frame_tag "new_radio" do %>
+  <%= form_with model: @radio, local: true do |form| %>
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :url_stream %>
+      <%= form.text_field :url_stream %>
+    </div>
+
+    <div class="field">
+      <%= form.label :font_color %>
+      <%= form.text_field :font_color %>
+    </div>
+
+    <div class="field">
+      <%= form.label :font_type %>
+      <%= form.text_field :font_type %>
+    </div>
+
+    <div class="field">
+      <%= form.label :icon_color %>
+      <%= form.text_field :icon_color %>
+    </div>
+
+    <div class="field">
+      <%= form.label :logo %>
+      <%= form.text_field :logo %>
+    </div>
+
+    <div class="field">
+      <%= form.label :menu_bg_color %>
+      <%= form.text_field :menu_bg_color %>
+    </div>
+
+    <div class="field">
+      <%= form.label :player_bg_color %>
+      <%= form.text_field :player_bg_color %>
+    </div>
+
+    <h3>Social Links:</h3>
+    <%= form.fields_for :socials do |social_fields| %>
+      <div class="field">
+        <%= social_fields.label :social_type %>
+        <%= social_fields.text_field :social_type, readonly: true %>
+      </div>
+      <div class="field">
+        <%= social_fields.label :url_socials, "URL" %>
+        <%= social_fields.text_field :url_socials %>
+      </div>
+    <% end %>
+
+    <%= form.fields_for :schedule do |schedule_fields| %>
+      <%= schedule_fields.fields_for :programings do |programming_fields| %>
+        <div class="field">
+          <%= programming_fields.label :day %>
+          <%= programming_fields.text_field :day %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+
+  <% end %>
+<% end %>

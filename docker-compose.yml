@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: rb_development
+      POSTGRES_USER: rb-development
+      POSTGRES_PASSWORD: rb-development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: bash -c "bundle install && rm -f tmp/pids/server.pid && bin/rails server -b '0.0.0.0'"
+    volumes:
+      - .:/app
+      - rails_cache:/app/tmp/cache
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgres://rb-development:rb-development@db/rb_development
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  rails_cache:

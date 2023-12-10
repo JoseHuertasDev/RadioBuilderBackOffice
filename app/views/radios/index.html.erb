@@ -1,0 +1,11 @@
+<!-- app/views/radios/index.html.erb -->
+<%= link_to 'New Radio', new_radio_path %>
+
+<% @radios.each do |radio| %>
+  <p>
+    <%= radio.title %>
+    <%= link_to 'Show', radio %>
+    <%= link_to 'Edit', edit_radio_path(radio) %>
+    <%= link_to 'Destroy', radio, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </p>
+<% end %>

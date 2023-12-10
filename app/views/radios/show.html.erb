@@ -1,0 +1,63 @@
+<!-- app/views/radios/show.html.erb -->
+
+<%= turbo_frame_tag "radio" do %>
+  <h2><%= @radio.title %></h2>
+
+  <p>
+    <strong>Stream URL:</strong>
+    <%= @radio.url_stream %>
+  </p>
+
+  <p>
+    <strong>Font Color:</strong>
+    <%= @radio.font_color %>
+  </p>
+
+  <p>
+    <strong>Font Type:</strong>
+    <%= @radio.font_type %>
+  </p>
+
+  <p>
+    <strong>Icon Color:</strong>
+    <%= @radio.icon_color %>
+  </p>
+
+  <p>
+    <strong>Logo:</strong>
+    <%= @radio.logo %>
+  </p>
+
+  <p>
+    <strong>Menu Background Color:</strong>
+    <%= @radio.menu_bg_color %>
+  </p>
+
+  <p>
+    <strong>Player Background Color:</strong>
+    <%= @radio.player_bg_color %>
+  </p>
+
+  <h3>Social Links:</h3>
+  <% @radio.socials.each do |social| %>
+    <p>
+      <strong>Type:</strong>
+      <%= social.social_type %>
+      <strong>URL:</strong>
+      <%= social.url_socials %>
+    </p>
+  <% end %>
+
+  <h3>Schedule:</h3>
+  <% if @radio.schedule.present? %>
+    <h3>Schedule:</h3>
+    <% @radio.schedule.programings.each do |programing| %>
+      <p>
+        <strong>Day:</strong>
+        <%= programing.day %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>No schedule available.</p>
+  <% end %>
+<% end %>

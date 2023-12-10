@@ -1,0 +1,33 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+
+# Configure Using Gemfile
+# gem "pg"
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: <%= ENV['POSTGRES_DB'] || 'radio_builder_back_office_development' %>
+  username: <%= ENV['POSTGRES_USER'] || 'default_username' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || 'default_password' %>
+  host: <%= ENV['DB_HOST'] || 'localhost' %>
+  port: <%= ENV['DB_PORT'] || 5432 %>
+
+test:
+  <<: *default
+  database: <%= ENV['POSTGRES_DB_TEST'] || 'radio_builder_back_office_test' %>
+  username: <%= ENV['POSTGRES_USER'] || 'default_username' %>
+  password: <%= ENV['POSTGRES_PASSWORD'] || 'default_password' %>
+  host: <%= ENV['DB_HOST'] || 'localhost' %>
+  port: <%= ENV['DB_PORT'] || 5432 %>
+
+production:
+  <<: *default
+  database: <%= ENV['POSTGRES_DB_PROD'] || 'radio_builder_back_office_production' %>
+  username: <%= ENV['POSTGRES_USER_PROD'] || 'radio_builder_back_office' %>
+  password: <%= ENV['POSTGRES_PASSWORD_PROD'] || ENV["RADIO_BUILDER_BACK_OFFICE_DATABASE_PASSWORD"] %>
+  host: <%= ENV['DB_HOST_PROD'] || 'localhost' %>
+  port: <%= ENV['DB_PORT_PROD'] || 5432 %>

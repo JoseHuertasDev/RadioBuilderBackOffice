@@ -1,0 +1,30 @@
+<!-- app/views/radios/edit.html.erb -->
+
+<%= turbo_frame_tag "edit_radio" do %>
+  <%= form_with model: @radio, local: true do |form| %>
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, readonly: true %>
+    </div>
+
+    <!-- (Otros campos de Radio) -->
+
+    <h3>Social Links:</h3>
+    <%= form.fields_for :socials do |social_fields| %>
+      <div class="field">
+        <%= social_fields.label :social_type %>
+        <%= social_fields.text_field :social_type, readonly: true %>
+      </div>
+      <div class="field">
+        <%= social_fields.label :url_socials, "URL" %>
+        <%= social_fields.text_field :url_socials %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= form.submit "Update Radio" %>
+    </div>
+
+  <% end %>
+<% end %>
