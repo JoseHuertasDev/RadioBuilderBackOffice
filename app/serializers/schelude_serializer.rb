@@ -1,4 +1,4 @@
-class ScheduleSerializer < BaseSerializer
+class ScheludeSerializer < BaseSerializer
   attributes :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday
 
   %i[monday tuesday wednesday thursday friday saturday sunday].each do |day|
